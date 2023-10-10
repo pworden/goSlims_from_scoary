@@ -269,5 +269,5 @@ outputDirForGoSlims=${inputForGoSlims%/*}
 (https://agbase.arizona.edu/cgi-bin/tools/goslimviewer_select.pl)
 3. The goSlims output can then be put into the web service **Revigo** for further summaries.
 (http://revigo.irb.hr/)
-* The program CirGo also gives a good graphic summary for the three GeneOntology categories.
+* The program **CirGo** also gives a good graphic summary for the three GeneOntology categories.
 (https://github.com/IrinaVKuznetsova/CirGO)
