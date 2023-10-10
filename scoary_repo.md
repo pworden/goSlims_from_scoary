@@ -1,8 +1,82 @@
+# GO_Slims_Summary
+Gene or protein list to blast search to gene ontology summary
+
 # Scoary to gene ontology summaries
 This page summarises the steps that the **00_0_overall_scoary_script.sh** script performs. Which is to run scoary, get protein identifiers from the genes of interest, and then get and summarise gene ontology information from the proteins of interest.
 
 ## Initial Setup
-Before running the Scoary pipeline, ensure that you have set up the necessary directories and have the required input files ready.
+Before running the Scoary pipeline, ensure that you have set up the necessary directories, the nr and diamond databases and have the required input files ready.
+
+***
+
+### Blast databases instructions
+The complete Blast nr database is needed for running the diamond-blastx search
+
+**General instructions for Blast databases:**
+https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html
+
+**Browse the FTP blast databases:**
+https://ftp.ncbi.nlm.nih.gov/blast/db/
+
+**Documents:**
+https://ftp.ncbi.nlm.nih.gov/blast/documents/blastdb.html
+
+#### Download nr database
+**needed for scoary to gene gene ontology summary**
+wget "ftp://ftp.ncbi.nlm.nih.gov/blast/db/nr.*.tar.gz"
+
+***
+## Diamond protein database
+Github wiki describing how to download and install the diamond script and database onto your server
+https://github.com/bbuchfink/diamond/wiki
+
+### Diamond database creation
+The DIAMND database can be created from the NCBI NR (Non-Redundant) database. Both the nr and the created diamond databases will be of many GBs size, so the server will need sufficient size.
+
+1. Download the NCBI NR Database:
+    Visit the NCBI website (https://www.ncbi.nlm.nih.gov/) and navigate to the FTP site to access the NR database. See above for more detailed instructions for the "nr" database.
+
+2. Install DIAMOND:
+    Download and install the DIAMOND software on your server. The latest of DIAMOND is at the GitHub page (https://github.com/bbuchfink/diamond).
+    Or create a conda enviroment and install through conda
+    (https://anaconda.org/bioconda/diamond)
+
+3. Extract and Concatenate NR Sequences:
+
+   - The NCBI NR database is often split into multiple files due to its size. You will need to concatenate these files into a single FASTA file. You can use the cat command (on Unix-based systems) or other file concatenation methods. For example:
+
+   ```Bash
+   # This command extracts and concatenates the NR database files into a single nr.fasta file.
+   cat nr.*.tar.gz | tar -xzf - -O > nr.fasta
+   ```
+
+4. Create a DIAMOND Database:
+
+   - Use the diamond makedb command to create a DIAMOND database from the concatenated NR FASTA file. Specify the input FASTA file and the desired output database file. For example:
+
+   ```Bash
+   # This command creates a DIAMOND database named nr.dmnd from the nr.fasta file.
+   diamond makedb --in nr.fasta -d nr.dmnd
+   ```
+
+5. Optional: Customize DIAMOND Parameters:
+
+   - You can customize the indexing process by specifying options like --block-size or --threads to optimize performance. Refer to the DIAMOND documentation for details on available options.
+
+6. Verify the Database:
+
+   - To ensure that the database was created successfully, you can run a simple search using DIAMOND. For example:
+
+    ```Bash
+    # Replace query.fasta with a FASTA file containing a protein sequence you want to search,
+    # and output.txt with the desired output file for results.
+    diamond blastp -d nr.dmnd -q query.fasta -o output.txt
+    ```
+
+The newly created DIAMOND database is many times faster than a blastx database. Note that the NR database is many GB large, so indexing it may take some time and will require sufficient disk space.
+
+
+***
 
 ### Directory Structure
 - Create a directory named "scoary" to store all initial Scoary inputs.
