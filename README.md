@@ -32,6 +32,7 @@ wget "ftp://ftp.ncbi.nlm.nih.gov/blast/db/nr.*.tar.gz"
 ***
 ## Diamond protein database
 **Needed for scoary to gene gene ontology summary**
+
 Github wiki describing how to download and install the diamond script and database onto your server
 https://github.com/bbuchfink/diamond/wiki
 
