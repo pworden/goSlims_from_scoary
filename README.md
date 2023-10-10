@@ -22,11 +22,16 @@ https://ftp.ncbi.nlm.nih.gov/blast/db/
 https://ftp.ncbi.nlm.nih.gov/blast/documents/blastdb.html
 
 #### Download nr database
-**needed for scoary to gene gene ontology summary**
+
+```
 wget "ftp://ftp.ncbi.nlm.nih.gov/blast/db/nr.*.tar.gz"
+```
+
+**NR database can be used to create a diamond database**
 
 ***
 ## Diamond protein database
+**Needed for scoary to gene gene ontology summary**
 Github wiki describing how to download and install the diamond script and database onto your server
 https://github.com/bbuchfink/diamond/wiki
 
