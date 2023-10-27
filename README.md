@@ -248,7 +248,9 @@ To gather gene ontology identifiers from Uniprot, follow these manual steps:
 ***
 
 # Run the final (2st) scoary script
-#####Run the following script to get proteins and their gene ontology information
+
+##### Run the following script to get proteins and their gene ontology information
+
 - **00_1_overall_scoary_script.sh**
 
 This script gets the gene ontology data from the uniprot data (manual stage above), then:
