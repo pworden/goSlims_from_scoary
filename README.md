@@ -122,7 +122,9 @@ quit()                      # To quit R
 ```
 
 # Run the main (1st) scoary script
-#####Run the following script to get proteins and their gene ontology information
+
+##### Run the following script to get proteins and their gene ontology information
+
 - **00_0_overall_scoary_script.sh**
 
 ## Script Inputs
